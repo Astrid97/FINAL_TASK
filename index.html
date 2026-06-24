@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Store - Final Task Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2 family=Poppins:wght@400;600;700&family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; overflow-x: hidden; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
+        
+        .slide-deck { position: relative; width: 1280px; height: 720px; background: #1e293b; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid #334155; }
+        
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 50px 80px; display: none; flex-direction: column; justify-content: flex-start; z-index: 1; }
+        .slide.active { display: flex; }
+
+        /* Slide Variants Layouts */
+        .slide-center { justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        .two-column { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; margin-top: 10px; }
+        
+        /* Titles */
+        h1 { font-family: 'Poppins', sans-serif; font-size: 70px; color: #ff6b6b; font-weight: 700; margin-bottom: 15px; line-height: 1.1; }
+        h2.slide-title { font-family: 'Poppins', sans-serif; font-size: 40px; color: #38bdf8; font-weight: 600; margin-bottom: 30px; border-bottom: 2px solid #334155; padding-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        h2.slide-title i { color: #ff6b6b; font-size: 34px; }
+        h3 { font-size: 24px; color: #f1f5f9; margin-bottom: 15px; font-weight: 600; }
+
+        /* Typography & Lists */
+        p { font-size: 22px; color: #94a3b8; line-height: 1.6; margin-bottom: 15px; }
+        p strong { color: #f1f5f9; }
+        ul { list-style: none; margin-top: 15px; }
+        li { font-size: 20px; color: #cbd5e1; margin-bottom: 12px; position: relative; padding-left: 30px; line-height: 1.5; }
+        li::before { content: "\f105"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 5px; color: #ff6b6b; }
+        
+        /* Code Box styling */
+        .code-container { background: #0f172a; border-radius: 10px; padding: 20px; border: 1px solid #334155; font-family: 'Fira Code', monospace; font-size: 16px; line-height: 1.5; color: #e2e8f0; overflow-y: auto; max-height: 440px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.3); }
+        .keyword { color: #f43f5e; font-weight: 500; }
+        .type-ident { color: #38bdf8; }
+        .string-lit { color: #10b981; }
+        .number-lit { color: #fbbf24; }
+        .comment { color: #64748b; font-style: italic; }
+
+        /* Visual Blocks & Tiles */
+        .tile-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 20px; }
+        .tile { background: #111827; border: 1px solid #334155; padding: 30px; border-radius: 12px; text-align: center; transition: transform 0.2s; }
+        .tile i { font-size: 45px; color: #ff6b6b; margin-bottom: 25px; }
+        .tile h4 { font-size: 22px; color: #f1f5f9; margin-bottom: 10px; font-family: 'Poppins', sans-serif; }
+        .tile p { font-size: 17px; color: #94a3b8; margin-bottom: 0; }
+
+        /* Controls Footer */
+        .footer-controls { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px 80px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #334155; background: #111827; z-index: 10; }
+        .footer-info { font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-btns { display: flex; gap: 15px; }
+        .nav-btns button { background: #334155; border: none; color: white; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 16px; transition: background 0.2s; }
+        .nav-btns button:hover { background: #ff6b6b; }
+
+        /* Grammar Highlight Badge */
+        .badge { background: rgba(244, 63, 94, 0.15); color: #f43f5e; padding: 4px 10px; border-radius: 6px; font-size: 15px; font-weight: 600; text-transform: uppercase; display: inline-block; margin-bottom: 10px; border: 1px solid rgba(244, 63, 94, 0.3); }
+        .badge-future { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    </style>
+</head>
+<body>
+
+    <div class="slide-deck">
+        
+        <!-- SLIDE 1 (CORREGIDA) -->
+        <div class="slide slide-center active">
+            <h1>Food Store Platform</h1>
+            <p style="font-size: 28px; color: #38bdf8; font-family: 'Poppins', sans-serif; margin-bottom: 40px;">Final Task Presentation: JS & TS Integration</p>
+            <p style="font-size: 20px; color: #64748b;">Technical Architecture and Logical Workflow Overview</p>
+            <div style="margin-top: 50px; display: flex; gap: 40px; font-weight: 600; font-size: 18px; color: #cbd5e1;">
+                <span><i class="fa-solid fa-user" style="color: #ff6b6b; margin-right: 8px;"></i> Astrid Ayelen Añazco</span>
+                <span><i class="fa-solid fa-user" style="color: #ff6b6b; margin-right: 8px;"></i> Carina Elizabeth Aranchet</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide">
+            <h2 class="slide-title"><i class="fa-solid fa-folder-tree"></i> Basic Architecture</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Workspace Organization</h3>
+                    <p>Our source code is fully modularized inside the <strong>src/</strong> workspace directory to optimize team collaboration.</p>
+                    <ul>
+                        <li><strong>Structure & Layout:</strong> Handled by semantic HTML5 structures.</li>
+                        <li><strong>Visual Identity:</strong> Configured inside the <code>styles/</code> folder using custom rules (<code>cart.css</code>, <code>global.css</code>).</li>
+                        <li><strong>Logic Layers:</strong> Separated into data catalogs, utils management, and strict declaration types.</li>
+                    </ul>
+                </div>
+                <div class="code-container" style="font-size: 14px;">
+                    <span class="comment"># Project Directory Tree</span><br>
+                    📂 src/<br>
+                    &nbsp;&nbsp;📂 data/<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;📄 data.ts <span class="comment">(Product array catalog)</span><br>
+                    &nbsp;&nbsp;📂 pages/store/home/<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;📄 home.html / home.ts<br>
+                    &nbsp;&nbsp;📂 styles/<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;📄 base.css / cart.css / global.css<br>
+                    &nbsp;&nbsp;📂 <span style="color:#38bdf8">types/</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;📄 <span style="color:#38bdf8">product.ts (Interfaces)</span><br>
+                    &nbsp;&nbsp;📂 <span style="color:#fbbf24">utils/</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;📄 <span style="color:#fbbf24">cart.ts (Render logic)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide">
+            <h2 class="slide-title"><i class="fa-solid fa-square-sliders"></i> User Interaction & Flow</h2>
+            <p>Our system listens and responds continuously to events occurring inside the client application environment.</p>
+            <div class="tile-container">
+                <div class="tile">
+                    <i class="fa-solid fa-arrow-pointer"></i>
+                    <h4>1. Initialization</h4>
+                    <p>Computer reads files and renders the catalog layout container automatically.</p>
+                </div>
+                <div class="tile">
+                    <i class="fa-solid fa-sliders"></i>
+                    <h4>2. Filtering</h4>
+                    <p>Users filter items by choosing sidebar options like 'Pizzas' or typing keywords.</p>
+                </div>
+                <div class="tile">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <h4>3. Action Response</h4>
+                    <p>Clicking 'Añadir al carrito' triggers an active listener, running background computations.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide">
+            <h2 class="slide-title"><i class="fa-solid fa-database"></i> Persistent Catalog Storage</h2>
+            <div class="two-column">
+                <div>
+                    <span class="badge">Module 3: Data</span>
+                    <h3>The PRODUCTS Array</h3>
+                    <p>Our food catalog is declared as a global data dataset constant inside <code>src/data/data.ts</code>.</p>
+                    <p>This allows all functions across our pages to fetch matching product objects dynamically without losing state configuration.</p>
+                </div>
+                <div class="code-container" style="max-height: 420px; font-size:14px;">
+                    <span class="keyword">export const</span> PRODUCTS: Product[] = [<br>
+                    &nbsp;&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;id: <span class="number-lit">1</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;nombre: <span class="string-lit">"Pizza Muzzarella"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;precio: <span class="number-lit">4500.0</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;descripcion: <span class="string-lit">"Salsa de tomate y muzzarella"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;stock: <span class="number-lit">20</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;imagen: <span class="string-lit">"/img/pizzaMuza.jpg"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;disponible: <span class="keyword">true</span><br>
+                    &nbsp;&nbsp;},<br>
+                    &nbsp;&nbsp;{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;id: <span class="number-lit">2</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;nombre: <span class="string-lit">"Pizza Napolitana"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;precio: <span class="number-lit">5200.0</span><br>
+                    &nbsp;&nbsp;}<br>
+                    ]
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide">
+            <h2 class="slide-title"><i class="fa-solid fa-calculator"></i> Functional Intelligence: DOM Cart</h2>
+            <div class="two-column">
+                <div class="code-container" style="max-height: 440px; font-size: 13px;">
+                    <span class="keyword">const</span> <span style="color:#38bdf8">renderCart</span> = () => {<br>
+                    &nbsp;&nbsp;<span class="keyword">const</span> cart = getCart();<br>
+                    &nbsp;&nbsp;cartContainer.innerHTML = <span class="string-lit">""</span>;<br><br>
+                    &nbsp;&nbsp;<span class="keyword">let</span> <span style="color:#fbbf24">totalAcumulado</span> = <span class="number-lit">0</span>;<br><br>
+                    &nbsp;&nbsp;cart.forEach(item => {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span> <span style="color:#10b981">subtotal</span> = item.precio * item.cantidad;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#fbbf24">totalAcumulado</span> += <span style="color:#10b981">subtotal</span>;<br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// DOM injection script logic...</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;article.querySelector(<span class="string-lit">".btn-sumar"</span>)?.addEventListener(<span class="string-lit">"click"</span>, () => {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;updateQuantity(item.id, <span class="number-lit">1</span>);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderCart();<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+                    &nbsp;&nbsp;});<br>
+                    &nbsp;&nbsp;cartTotal.textContent = <span class="string-lit">`$${totalAcumulado}`</span>;<br>
+                    };
+                </div>
+                <div>
+                    <span class="badge">Module 3: Functions</span>
+                    <h3>Dynamic Calculation</h3>
+                    <p>The <code>renderCart()</code> function represents our core processing block.</p>
+                    <ul>
+                        <li><strong>Iteration:</strong> It reads elements using a <code>forEach</code> statement loop.</li>
+                        <li><strong>Computation:</strong> It multiplies prices by quantities to update the <code>totalAcumulado</code> state scalar.</li>
+                        <li><strong>Event Binding:</strong> It binds custom element execution nodes dynamically to handle quantity changes.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide slide-center" style="background: #0f172a;">
+            <span class="badge" style="font-size: 18px; padding: 6px 15px;">Module 4 Challenge</span>
+            <h2 style="font-size: 55px; color: #f43f5e; font-family: 'Poppins', sans-serif; margin-top: 20px;">JavaScript Flexibility Issues</h2>
+            <p style="max-width: 800px; margin: 20px auto; font-size: 24px; color: #94a3b8;">
+                <strong>Although</strong> JavaScript is efficient for web behaviors, its dynamic typing often introduces runtime bugs into production environments.
+            </p>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide">
+            <h2 class="slide-title"><i class="fa-solid fa-shield-halved"></i> Structural Safety: Type Contracts</h2>
+            <div class="two-column">
+                <div>
+                    <span class="badge">Module 4: Interfaces</span>
+                    <h3>The Product Contract</h3>
+                    <p>To avoid unhandled runtime failures, we built explicit data schemas inside <code>src/types/product.ts</code>.</p>
+                    <p><strong>Despite</strong> adding an extra modeling configuration stage, it guarantees that food models are verified strictly at compile-time by the compiler tool.</p>
+                </div>
+                <div class="code-container" style="font-size: 15px;">
+                    <span class="keyword">export interface</span> <span class="type-ident">Product</span> {<br>
+                    &nbsp;&nbsp;id: <span class="type-ident">number</span>;<br>
+                    &nbsp;&nbsp;eliminado: <span class="type-ident">boolean</span>;<br>
+                    &nbsp;&nbsp;createdAt: <span class="type-ident">string</span>;<br>
+                    &nbsp;&nbsp;nombre: <span class="type-ident">string</span>;<br>
+                    &nbsp;&nbsp;precio: <span class="type-ident">number</span>;<br>
+                    &nbsp;&nbsp;descripcion: <span class="type-ident">string</span>;<br>
+                    &nbsp;&nbsp;stock: <span class="type-ident">number</span>;<br>
+                    &nbsp;&nbsp;imagen: <span class="type-ident">string</span>;<br>
+                    &nbsp;&nbsp;disponible: <span class="type-ident">boolean</span>;<br>
+                    &nbsp;&nbsp;categorias: <span class="type-ident">ICategory[]</span>;<br>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide">
+            <h2 class="slide-title"><i class="fa-solid fa-chart-line"></i> Technical Roadmap</h2>
+            <p>Our long-term engineering projections rely on this balanced environment strategy.</p>
+            <div class="tile-container" style="margin-top: 40px;">
+                <div class="tile">
+                    <i class="fa-solid fa-arrows-spin" style="color: #38bdf8;"></i>
+                    <h4>Scalability</h4>
+                    <p>The compiler <strong>will detect</strong> conflicting declarations if our data model evolves.</p>
+                </div>
+                <div class="tile">
+                    <i class="fa-solid fa-server" style="color: #10b981;"></i>
+                    <h4>API Integration</h4>
+                    <p>Static typing <strong>will ensure</strong> seamless communication when connecting backend servers.</p>
+                </div>
+                <div class="tile">
+                    <i class="fa-solid fa-credit-card" style="color: #fbbf24;"></i>
+                    <h4>Secure Checkout</h4>
+                    <p>Explicit numeric boundaries <strong>will prevent</strong> arithmetic errors during payment confirmation steps.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9 -->
+        <div class="slide slide-center">
+            <h1 style="color: #10b981; font-size: 80px;">Conclusion</h1>
+            <p style="font-size: 26px; max-width: 850px; margin-top: 20px; color: #cbd5e1;">
+                Our Food Store platform successfully blends the <strong>dynamic runtime interaction</strong> of JavaScript with the <strong>compile-time safety</strong> of TypeScript.
+            </p>
+            <p style="color: #64748b; font-size: 20px; margin-top: 30px;">This implementation ensures a high-quality codebase for professional enterprise systems.</p>
+        </div>
+
+        <!-- CONTROLES DEL FOOTER (FIX CONTEO SLIDES A 9) -->
+        <div class="footer-controls">
+            <div class="footer-info" id="footer-text">Slide 1 of 9 | Food Store Project</div>
+            <div class="nav-btns">
+                <button id="prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <button id="next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const footerText = document.getElementById('footer-text');
+        let currentSlide = 0;
+
+        function updateSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            footerText.textContent = `Slide ${currentSlide + 1} of ${slides.length} | Food Store Project`;
+        }
+
+        prevBtn.addEventListener('click', () => updateSlide(currentSlide - 1));
+        nextBtn.addEventListener('click', () => updateSlide(currentSlide + 1));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') updateSlide(currentSlide + 1);
+            if (e.key === 'ArrowLeft') updateSlide(currentSlide - 1);
+        });
+    </script>
+</body>
+</html>
